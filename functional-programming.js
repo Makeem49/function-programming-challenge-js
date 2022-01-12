@@ -122,6 +122,37 @@ console.log(
   intersection([5, 10, 15, 20], [15, 88, 1, 5, 7], [1, 10, 15, 5, 20])
 );
 
+// Expected output [5,15]
+
+// Construct a function union that compares input arrays and returns a new array that contains all elements. If there are duplicate elements, only add it once to the new array.
+const union = (arrays) => {
+  const unionFunction = (sumUp, unit) => {
+    if (sumUp.length === 0) {
+      return unit;
+    } else {
+      for (let k = 0; k < unit.length; k++) {
+        if (!sumUp.includes(unit[k])) {
+          sumUp.push(unit[k]);
+        }
+      }
+      return sumUp;
+    }
+  };
+
+  let buildUp = [];
+
+  for (let i = 0; i < arrays.length; i++) {
+    buildUp = unionFunction(buildUp, arrays[i]);
+  }
+
+  return buildUp;
+};
+
 console.log(
-  intersection([5, 10, 15, 20], [15, 88, 1, 5, 7], [1, 10, 15, 5, 20])
+  union([
+    [5, 10, 15],
+    [15, 88, 1, 5, 7],
+    [100, 15, 10, 1, 5],
+  ])
 );
+// should log: [5, 10, 15, 88, 1, 7, 100]
